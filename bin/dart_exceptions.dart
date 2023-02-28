@@ -1,6 +1,7 @@
 import 'controllers/bank_controller.dart';
 import 'exceptions/bank_controller_exceptions.dart';
 import 'models/account.dart';
+import 'dart:math';
 
 void main() {
   // Criando o banco
@@ -40,4 +41,24 @@ void main() {
   } on Exception {
     print("OPS, algo deu errado.");
   }
+}
+
+void testandoNullSafety() {
+  Account? myAccount = Account(name: "Alan", balance: 7000, isAuthenticated: true);
+
+  Random rng = Random();
+  int randomNumber = rng.nextInt(10);
+  if(randomNumber <= 5) {
+    myAccount.createdAt = DateTime.now();
+  }
+  print(myAccount.runtimeType);
+  // if(myAccount != null) {
+  //   print(myAccount.balance);
+  // }else {
+  //   print("Conta nula");
+  // }
+  //Operador ternario
+  // print(myAccount != null ? myAccount.balance : "Conta nula");
+  //Chamada segura
+  // print(myAccount?.balance);
 }
